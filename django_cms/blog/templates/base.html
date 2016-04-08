@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/github.min.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/screen.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font.css' %}"/>
+
+
+    <style>
+        pre {
+        word-wrap: normal;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        -webkit-hyphens: none;
+        hyphens: none;
+        font-size: 0.7em;
+        line-height: 1.3em;
+        }
+        pre code, pre tt {
+        white-space: pre;
+        }
+    </style>
+</head>
+<body class="{% block body_class %}{% endblock %} nav-closed">
+
+<div class="nav">
+    <h3 class="nav-title">菜单</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">关闭</span>
+    </a>
+    <ul>
+        <li class="nav-home nav-current" role="presentation"><a href="/">首页</a></li>
+        <li class="nav-current" role="presentation"><a href="{% url 'blog:columns' %}">文章分类</a></li>
+
+        <li class="nav-about" role="presentation"><a href="{% url 'about' %}">关于我</a></li>
+
+        <li class="nav-start-a-blog" role="presentation"><a href="{% url 'message' %}">留言</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="#">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+<div class="site-wrapper">
+
+    {% block head %}{% endblock %}
+    {% block body %}{% endblock %}
+
+    <footer class="site-footer clearfix">
+        <section class="copyright">Powered by Django</section>
+    </footer>
+
+</div>
+
+
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
+
+
+
+

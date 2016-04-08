@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block description %}{%endblock%}
+{% block title %}{% endblock %}
+{%block body_class %} post-template {% endblock %}
+{% load staticfiles %}
+
+{% block head %}
+<header class="main-header post-head no-cover">
+   {% include "main-nav.html" %}
+</header>
+{% endblock %}
+
+
+{% block body %}
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h2 class="post-title">留言板</h2>
+            
+        </header>
+
+        <section class="post-content">
+            <h5>主人寄语</h5>
+
+            <p>有什么话想对我说呢   Write something here</p>
+        </section>
+       
+
+        <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-thread-key="article-comments-message" data-title="messages"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"heheda2016"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- Duoshuo Comment END -->
+    </article>
+<footer class="post-footer">
+
+</footer>
+
+</main>
+
+
+
+{% endblock %}

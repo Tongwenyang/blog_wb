@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block description %}{%endblock%}
+{% block title %}{{article.title}}{% endblock %}
+{%block body_class %} post-template {% endblock %}
+{% load staticfiles %}
+
+{% block head %}
+<header class="main-header post-head no-cover">
+    {% include "main-nav.html" %}
+</header>
+{% endblock %}
+
+
+{% block body %}
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h2 class="post-title">{{article.title}}</h2>
+            <section class="post-meta">
+                <time class="post-date" datetime="{{article.add_time|date:'b d, Y'}}">{{article.add_time|date:"b d, Y"}}
+                </time>
+                {% if article.tags %}on
+                {% for tag in article.tags.all %}
+                <a href="{%url 'article:tag' tag%}">{{tag }}</a>
+                {% endfor %}
+                {% endif %}
+            </section>
+        </header>
+
+        <section class="post-content">
+            {{article.content | md1}}
+
+            <details open="">
+                <summary>原文链接：<a href="{{blog.get_absolute_url}}" rel="author">{{blog.title}}</a>，转发请注明来自<a
+                        href="#">MY的博客</a>！
+                </summary>
+            </details>
+        </section>
+        <footer class="post-footer">
+
+            <section class="author">
+                <h4><a href="{{url}}">{{blog.author.username}}</a></h4>
+
+                <p>Keep It Simple, Stupid.</p>
+
+            </section>
+
+
+
+        </footer>
+
+        <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-thread-key="article-comments-{{ blog.id }}" data-title="{{ blog.title }}"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"heheda2016"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- Duoshuo Comment END -->
+    </article>
+
+
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story " href="{{next_post.get_absolute_url}}">
+        <section class="post">
+            <h2>{{next_post.title}}</h2>
+        </section>
+    </a>
+    <a class="read-next-story prev " href="{{random_post.get_absolute_url}}">
+        <section class="post">
+            <h2>{{random_post.title}}</h2>
+        </section>
+    </a>
+</aside>
+
+{% endblock %}

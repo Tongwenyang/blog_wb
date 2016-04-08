@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block description %}{%endblock%}
+{% block title %}{{article.title}}{% endblock %}
+{%block body_class %} post-template {% endblock %}
+{% load staticfiles %}
+
+{% block head %}
+<header class="main-header post-head no-cover">
+    {% include "main-nav.html" %}
+</header>
+{% endblock %}
+
+
+{% block body %}
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h2 class="post-title">{{article.title}}</h2>
+            <section class="post-meta">
+                <time class="post-date" datetime="{{article.pub_date|date:'Y-m-d'}}">{{article.pub_date|date:"Y-m-d"}}
+                </time>
+            </section>
+        </header>
+
+        <section class="post-content">
+            {{article.content | safe}} 
+        </section>
+
+        <!-- Duoshuo Comment BEGIN -->
+    <div class="ds-thread" data-thread-key="article-comments-{{ article.pk }}" data-title="{{ blog.title }}"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"heheda2016"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- Duoshuo Comment END -->
+    </article>
+
+
+</main>
+
+
+
+{% endblock %}
